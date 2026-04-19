@@ -75,6 +75,11 @@ int16_t SX1272::beginFSK(float freq, float br, float freqDev, float rxBw, int8_t
 
 void SX1272::reset() {
   Module* mod = this->getMod();
+  if(mod->getRst() == RADIOLIB_NC) {
+    // no reset pin — delay to allow crystal startup before SPI
+    mod->hal->delay(5);
+    return;
+  }
   mod->hal->pinMode(mod->getRst(), mod->hal->GpioModeOutput);
   mod->hal->digitalWrite(mod->getRst(), mod->hal->GpioLevelHigh);
   mod->hal->delay(1);
