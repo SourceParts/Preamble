@@ -2,6 +2,10 @@
 
 Thank you for taking the time to contribute! All PRs and feedback are welcome.
 
+## AI Use
+
+AI-assisted contributions are welcome. We live in the future — use whatever tools help you write good code. The only requirement is that you review what you submit. If an LLM generated a change, read it, understand it, and stand behind it before opening a PR.
+
 ## Issues
 
 1. **Include enough context to reproduce.**  
