@@ -6,7 +6,9 @@ A universal wireless communication library for embedded devices. Fork of [RadioL
 
 RadioLib is excellent engineering. The chip support is broad, the abstraction layer is clean, and it runs on everything. We used it heavily in [MeshTNC](https://github.com/SourceParts/MeshTNC) and had real fixes to contribute — hardware quirks, initialization edge cases, things we found running the chips in production.
 
-The upstream maintainer describes RadioLib as a hobby project and has made clear that outside contributions are unwelcome. Hardware-verified bug fixes were reviewed and dismissed as AI-generated slop. The project has a code of conduct. It is not applied to the maintainer.
+The upstream maintainer describes RadioLib as a hobby project and has made clear that outside contributions are unwelcome. Hardware-verified bug fixes were reviewed and dismissed as AI-generated slop. The project has a [code of conduct][upstream-coc]. It is not applied to the maintainer.
+
+[upstream-coc]: https://github.com/jgromes/RadioLib/blob/7ea94eb01ad7c3069db2d9f4b369aa69a8ee416e/CODE_OF_CONDUCT.md#L3
 
 We are not interested in maintaining a private patch set on top of someone else's repo forever. So we forked it properly, gave it a name, and are developing it as a first-class open project under SourceParts.
 
@@ -107,3 +109,31 @@ SX127x, RFM9x, SX126x, LR11x0, LR2021 and SX128x
   * [__EFR32__](https://github.com/SiliconLabs/arduino) - Silicon Labs xG24, xG27 and other boards
 
 Preamble includes an internal hardware abstraction layer that makes it portable to non-Arduino environments as well.
+
+## Versioning
+
+Releases follow the pattern `v<upstream-version>+sourceparts.<n>`:
+
+- `v7.6.0+sourceparts.1` — based on RadioLib `7.6.0`, first SourceParts release
+- `v7.6.0+sourceparts.2` — same upstream base, second iteration (additional fixes or upstream cherry-picks)
+- `v7.7.0+sourceparts.1` — rebased onto RadioLib `7.7.0`
+
+The upstream version component reflects the RadioLib release that was current when the sync point last advanced. The `sourceparts.<n>` suffix increments with each Preamble-specific release on that base. Arduino Library Manager uses `library.properties` which carries only the upstream version number; the full semver build metadata is in `library.json` for PlatformIO.
+
+## Upstream tracking
+
+This fork tracks `jgromes/RadioLib` for relevant upstream changes and
+security updates. Security fixes from upstream will be prioritized. Bug
+fixes, chip support, and protocol improvements from upstream will be
+merged on a best-effort basis. Fork-specific changes — hardware fixes,
+initialization edge cases, and contributions rejected upstream — are
+maintained here.
+
+We do not guarantee parity with upstream, and divergence is expected
+where upstream behavior is incorrect or incompatible with production
+hardware use.
+
+## Code of Conduct
+
+Contributors and maintainers are expected to follow the project's
+[code of conduct](./CODE_OF_CONDUCT.md).

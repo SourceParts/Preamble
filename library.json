@@ -1,6 +1,6 @@
 {
     "name": "Preamble",
-    "version": "1.0.0",
+    "version": "7.6.0+sourceparts.1",
     "description": "Universal wireless communication library for LoRa and sub-GHz radio modules. Fork of RadioLib maintained by SourceParts.",
     "keywords": "radio, lora, communication, sx1276, sx1278, sx1272, sx1261, sx1262, sx1268, sx1280, sx1281, sx1282, cc1101, rf69, nrf24, si4432, llcc68, lr1110, lr1120, lr1121, lr2021, lorawan, aprs, ax25, rtty, sstv, pager, adsb",
     "homepage": "https://github.com/SourceParts/Preamble",
