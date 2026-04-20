@@ -1,17 +1,27 @@
 # Preamble
 
-## Universal wireless communication library for embedded devices
+A universal wireless communication library for embedded devices. Fork of [RadioLib](https://github.com/jgromes/RadioLib) by Jan Gromeš.
 
-Preamble allows its users to integrate all sorts of different wireless communication modules, protocols and even digital modes into a single consistent system.
-Want to add a Bluetooth interface to your LoRa network? Sure thing! Do you just want to go really old-school and play around with radio teletype, slow-scan TV, or even Hellschreiber using nothing but a cheap radio module? Why not!
+## Why this fork exists
 
-Preamble natively supports Arduino, but can run in non-Arduino environments as well. See [examples/NonArduino](https://github.com/SourceParts/Preamble/tree/master/examples/NonArduino).
+RadioLib is excellent engineering. The chip support is broad, the abstraction layer is clean, and it runs on everything. We used it heavily in [MeshTNC](https://github.com/SourceParts/MeshTNC) and had real fixes to contribute — hardware quirks, initialization edge cases, things we found running the chips in production.
 
-## Fork Attribution
+The upstream maintainer explicitly describes RadioLib as a hobby project and has been consistently hostile to outside contributions. Valid bug fixes were dismissed, PRs were closed without engagement, and the message was clear: outside contributors are not welcome.
 
-Preamble is a fork of [RadioLib](https://github.com/jgromes/RadioLib) by Jan Gromeš, diverging at commit [`802b969f0`](https://github.com/jgromes/RadioLib/commit/802b969f0). The original MIT license is retained. See `license.txt`.
+We are not interested in maintaining a private patch set on top of someone else's repo forever. So we forked it properly, gave it a name, and are developing it as a first-class open project under SourceParts.
 
-### Supported modules:
+The name is apt: a LoRa preamble is the sync signal that starts every packet. This library is what gets your radio talking.
+
+**Preamble ships the fixes RadioLib wouldn't take:**
+- `SX127x/SX1272/SX1278`: crystal startup delay when `NRESET=NC` — without this, SPI transactions fail on cold boot
+- `SX128x`: `setBandwidth()` snaps to the nearest valid LoRa BW value instead of returning an error on approximate inputs
+
+## Fork attribution
+
+Preamble diverges from RadioLib at commit [`802b969f0`](https://github.com/jgromes/RadioLib/commit/802b969f0). The original MIT license is retained. See `license.txt`.
+
+## Supported modules
+
 * __CC1101__ FSK radio module
 * __LLCC68__ LoRa module
 * __LR11x0__ series LoRa/GFSK modules (LR1110, LR1120, LR1121)
@@ -27,7 +37,8 @@ Preamble is a fork of [RadioLib](https://github.com/jgromes/RadioLib) by Jan Gro
 * __SX128x__ series LoRa/GFSK/BLE/FLRC modules (SX1280, SX1281, SX1282)
 * __SX123x__ FSK/OOK radio modules (SX1231, SX1233)
 
-### Supported protocols and digital modes:
+## Supported protocols and digital modes
+
 * [__ADS-B__](https://mode-s.org/1090mhz/content/ads-b/1-basics.html) using OOK for LR2021
 * [__AX.25__](https://www.sigidwiki.com/wiki/PACKET) using 2-FSK or AFSK for modules:  
 SX127x, RFM9x, SX126x, RF69, SX1231, CC1101, RFM2x, Si443x, LR11x0, LR2021 and SX128x
@@ -48,7 +59,8 @@ SX127x, RFM9x, SX126x, LR11x0, LR2021 and SX128x
   * Supports Class A and C (and Multicast over C).
   * Pre-certified for Class A.
 
-### Supported Arduino platforms:
+## Supported Arduino platforms
+
 * __Arduino__  
   * [__AVR__](https://github.com/arduino/ArduinoCore-avr) - Arduino Uno, Mega, Leonardo, Pro Mini, Nano etc.
     * NOTE: Arduino boards based on ATmega328 (Uno, Pro Mini, Nano etc.) and smaller are NOT recommended. This is because the ATmega328 MCU is very constrained in terms of program and memory size, so the library will end up taking most of the space available. 
@@ -94,4 +106,4 @@ SX127x, RFM9x, SX126x, LR11x0, LR2021 and SX128x
 * __Silicon Labs__
   * [__EFR32__](https://github.com/SiliconLabs/arduino) - Silicon Labs xG24, xG27 and other boards
 
-The list above is by no means exhaustive - Preamble is independent of the used platform. It includes an internal hardware abstraction layer, which allows it to be easily ported even to non-Arduino environments.
+Preamble includes an internal hardware abstraction layer that makes it portable to non-Arduino environments as well.
