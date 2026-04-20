@@ -1,0 +1,73 @@
+name: Upstream sync check
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday 09:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch upstream
+        run: |
+          git remote add upstream https://github.com/jgromes/RadioLib.git
+          git fetch upstream
+
+      - name: Count new upstream commits
+        id: diff
+        run: |
+          BASE=$(git merge-base HEAD upstream/master)
+          COUNT=$(git rev-list "$BASE..upstream/master" --count)
+          COMMITS=$(git log "$BASE..upstream/master" --oneline | head -50)
+          echo "count=$COUNT" >> "$GITHUB_OUTPUT"
+          {
+            echo "commits<<EOF"
+            echo "$COMMITS"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Open issue if new commits exist
+        if: steps.diff.outputs.count > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const count = Number('${{ steps.diff.outputs.count }}');
+            const commits = `${{ steps.diff.outputs.commits }}`;
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'upstream-sync',
+              state: 'open',
+            });
+
+            if (existing.data.length > 0) {
+              core.info(`Upstream sync issue already open (#${existing.data[0].number}), skipping`);
+              return;
+            }
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Upstream sync: ${count} new commit${count === 1 ? '' : 's'} on jgromes/RadioLib`,
+              labels: ['upstream-sync'],
+              body: [
+                '## New upstream commits',
+                '',
+                `There are **${count}** new commit${count === 1 ? '' : 's'} on [jgromes/RadioLib](https://github.com/jgromes/RadioLib) since the last sync point.`,
+                '',
+                '```',
+                commits,
+                '```',
+                '',
+                'Review for security fixes (prioritize), bug fixes, and new chip support.',
+                'Cherry-pick relevant commits or open a tracking PR.',
+                '',
+                'Close this issue once the review is complete and the sync point advances.',
+              ].join('\n'),
+            });
