@@ -110,6 +110,19 @@ SX127x, RFM9x, SX126x, LR11x0, LR2021 and SX128x
 
 Preamble includes an internal hardware abstraction layer that makes it portable to non-Arduino environments as well.
 
+## Upstream tracking
+
+This fork tracks `jgromes/RadioLib` for relevant upstream changes and
+security updates. Security fixes from upstream will be prioritized. Bug
+fixes, chip support, and protocol improvements from upstream will be
+merged on a best-effort basis. Fork-specific changes — hardware fixes,
+initialization edge cases, and contributions rejected upstream — are
+maintained here.
+
+We do not guarantee parity with upstream, and divergence is expected
+where upstream behavior is incorrect or incompatible with production
+hardware use.
+
 ## Code of Conduct
 
 Contributors and maintainers are expected to follow the project's
