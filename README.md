@@ -6,7 +6,7 @@ A universal wireless communication library for embedded devices. Fork of [RadioL
 
 RadioLib is excellent engineering. The chip support is broad, the abstraction layer is clean, and it runs on everything. We used it heavily in [MeshTNC](https://github.com/SourceParts/MeshTNC) and had real fixes to contribute — hardware quirks, initialization edge cases, things we found running the chips in production.
 
-The upstream maintainer explicitly describes RadioLib as a hobby project and has been consistently hostile to outside contributions. Valid bug fixes were dismissed, PRs were closed without engagement, and the message was clear: outside contributors are not welcome.
+The upstream maintainer explicitly describes RadioLib as a hobby project and has made it clear that outside contributions are unwelcome. Valid, hardware-verified bug fixes were dismissed without review and our contributions were labeled as AI-generated slop — a blanket accusation used to avoid engagement rather than evaluate the work on its merits.
 
 We are not interested in maintaining a private patch set on top of someone else's repo forever. So we forked it properly, gave it a name, and are developing it as a first-class open project under SourceParts.
 
