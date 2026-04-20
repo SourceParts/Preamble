@@ -1,22 +1,15 @@
-# RadioLib ![Build Status](https://github.com/jgromes/RadioLib/workflows/CI/badge.svg) [![PlatformIO Registry](https://badges.registry.platformio.org/packages/jgromes/library/RadioLib.svg)](https://registry.platformio.org/libraries/jgromes/RadioLib) [![Component Registry](https://components.espressif.com/components/jgromes/radiolib/badge.svg)](https://components.espressif.com/components/jgromes/radiolib)
-
-### _One radio library to rule them all!_
+# Preamble
 
 ## Universal wireless communication library for embedded devices
 
-RadioLib allows its users to integrate all sorts of different wireless communication modules, protocols and even digital modes into a single consistent system.
+Preamble allows its users to integrate all sorts of different wireless communication modules, protocols and even digital modes into a single consistent system.
 Want to add a Bluetooth interface to your LoRa network? Sure thing! Do you just want to go really old-school and play around with radio teletype, slow-scan TV, or even Hellschreiber using nothing but a cheap radio module? Why not!
 
-RadioLib natively supports Arduino, but can run in non-Arduino environments as well! See [this Wiki page](https://github.com/jgromes/RadioLib/wiki/Porting-to-non-Arduino-Platforms) and [examples/NonArduino](https://github.com/jgromes/RadioLib/tree/master/examples/NonArduino).
+Preamble natively supports Arduino, but can run in non-Arduino environments as well. See [examples/NonArduino](https://github.com/SourceParts/Preamble/tree/master/examples/NonArduino).
 
-RadioLib was originally created as a driver for [__RadioShield__](https://github.com/jgromes/RadioShield), but it can be used to control as many different wireless modules as you like - or at least as many as your microcontroller can handle!
+## Fork Attribution
 
-### Quick links:
-* [__Wiki__](https://github.com/jgromes/RadioLib/wiki) - contains useful general information on using this library
-* [__FAQ__](https://github.com/jgromes/RadioLib/wiki/Frequently-Asked-Questions) - frequently asked questions, and answers
-* [__API Reference__](https://jgromes.github.io/RadioLib) - full API reference, automatically generated from the source code
-* [__Status Code Decoder__](https://radiolib-org.github.io/status_decoder/decode.html) - decoder for status codes returned by RadioLib methods
-* [__Debug Log Decoder__](https://radiolib-org.github.io/debug_decoder/decode.html) - decoder for RadioLib SPI debug logs
+Preamble is a fork of [RadioLib](https://github.com/jgromes/RadioLib) by Jan Gromeš, diverging at commit [`802b969f0`](https://github.com/jgromes/RadioLib/commit/802b969f0). The original MIT license is retained. See `license.txt`.
 
 ### Supported modules:
 * __CC1101__ FSK radio module
@@ -54,7 +47,6 @@ SX127x, RFM9x, RF69, SX1231, CC1101, nRF24L01, RFM2x and Si443x
 SX127x, RFM9x, SX126x, LR11x0, LR2021 and SX128x
   * Supports Class A and C (and Multicast over C).
   * Pre-certified for Class A.
-  * See the [wiki](https://github.com/jgromes/RadioLib/wiki/LoRaWAN) and [notes](https://github.com/jgromes/RadioLib/blob/master/examples/LoRaWAN/LoRaWAN_Starter/notes.md) for more information.
 
 ### Supported Arduino platforms:
 * __Arduino__  
@@ -102,4 +94,4 @@ SX127x, RFM9x, SX126x, LR11x0, LR2021 and SX128x
 * __Silicon Labs__
   * [__EFR32__](https://github.com/SiliconLabs/arduino) - Silicon Labs xG24, xG27 and other boards
 
-The list above is by no means exhaustive - RadioLib code is independent of the used platform! Compilation of all examples is tested for all platforms officially supported prior to releasing new version. In addition, RadioLib includes an internal hardware abstraction layer, which allows it to be easily ported even to non-Arduino environments.
+The list above is by no means exhaustive - Preamble is independent of the used platform. It includes an internal hardware abstraction layer, which allows it to be easily ported even to non-Arduino environments.
