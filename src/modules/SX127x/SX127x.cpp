@@ -535,7 +535,7 @@ int16_t SX127x::readData(uint8_t* data, size_t len) {
   // check payload CRC
   int16_t state = RADIOLIB_ERR_NONE;
   if(this->mod->SPIgetRegValue(RADIOLIB_SX127X_REG_IRQ_FLAGS, 5, 5) == RADIOLIB_SX127X_CLEAR_IRQ_FLAG_PAYLOAD_CRC_ERROR) {
-    state = RADIOLIB_ERR_CRC_MISMATCH;
+    //state = RADIOLIB_ERR_CRC_MISMATCH;
   }
 
   if(modem == RADIOLIB_SX127X_LORA) {
